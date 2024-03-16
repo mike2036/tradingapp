@@ -1,0 +1,516 @@
+/* font awesome cdn link */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+/* google font cdn link */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* :root伪类表示文档的根元素 */
+/* 定义一组变量，颜色值、阴影、边框和渐变样式，方便将来在整个文档中重复使用 */
+:root {
+  --white: #fff;
+  --black: #171717;
+  --bg-color: #1c1c1e;
+  --light-white: #999;
+
+  /* box-shadow: 水平偏移 垂直偏移 模糊半径 颜色 */
+  --box-shadow: 0 0.5rem 1rem #000;
+  --border: 0.1rem solid rgba(255, 255, 255, 0.1);
+  --gradient: linear-gradient(65deg, deeppink, coral);
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  /* 将所有元素的文本转换为首字母大写的形式 */
+  text-transform: capitalize;
+  /* 移除所有元素的外边框和边框 */
+  outline: none;
+  border: none;
+}
+
+/*  '*'选择子匹配文档中所有的元素，'::selection'是一个伪元素选择器 */
+*::selection {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* 浏览器的默认字体大小为 16px，因此这里将html元素的字体大小设置为
+浏览器默认字体大小的 62.5%，知己上就是 16px * 62.5% = 10px 
+这样做的目的：方便将来进行 rem 单位的换算*/
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 9rem;
+  overflow-x: hidden;
+}
+
+/* webkit内核浏览器的滚动条 */
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+/* 滚动条的拖动条 */
+::-webkit-scrollbar-thumb {
+  background: var(--white);
+}
+
+/* 滚动条的轨道 */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+body {
+  background: var(--black);
+  padding-bottom: 8rem;
+}
+
+section {
+  /* rem 表示相对于 html元素 的字体大小的倍数，而前面把html元素
+  的字体大小设成了 10px（16px的62.5% */
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  font-size: 1.8rem;
+  background: var(--gradient);
+  color: var(--white);
+  border-radius: 5rem;
+
+  /* 定义元素状态变化时的过渡效果 */
+  transition: 0.2s linear;
+}
+
+.btn:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-color);
+  /* border-bottom: var(--border); */
+  box-shadow: var(--box-shadow);
+  z-index: 1000;
+}
+
+/* 定义顶部导航栏样式 */
+/* 复合选择器：选择 header类的元素 下的 flex类的元素 */
+.header .flex {
+  /* display 设置元素的布局为flex弹性布局 */
+  display: flex;
+
+  /* 子元素沿主轴方向的对齐方式 为两端对齐 */
+  justify-content: space-between;
+
+  /* 子元素沿交叉轴方向的对齐方式 为居中对齐 */
+  align-items: center;
+  padding: 2rem;
+}
+
+/* 定义 logo样式 */
+.header .flex .logo {
+  font-size: 2.5rem;
+  color: var(--white);
+}
+
+.header .flex .logo i {
+  margin-right: 0.5rem;
+  color: coral;
+}
+
+.header .flex .btn {
+  margin-top: 0;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.navbar .nav {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border: var(--border);
+  box-shadow: var(--box-shadow);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  /* 每个项目两侧的间隔相等 */
+  justify-content: space-around;
+  /* 设置子元素之间的间距为 1rem */
+  gap: 1rem;
+  border-radius: 0.5rem;
+}
+
+.navbar .nav a {
+  font-size: 1.7rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  transition: 0.2s linear;
+  color: var(--white);
+}
+
+.navbar .nav a:hover {
+  background: var(--gradient);
+}
+
+/* .navbar .nav a:hover span {
+  color: coral;
+} */
+
+.navbar .nav a i {
+  display: none;
+}
+
+.home .flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.home .flex .image {
+  flex: 1 1 30rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 伪元素是两个冒号 */
+.home .flex .image::before {
+  /* 伪元素必须有一个内容属性 */
+  content: '';
+  /* 将该伪元素设为绝对定位，相对于其最近的上级元素，这里指的就
+  是 '.home .flex .image'元素 */
+  position: absolute;
+  top: 1rem;
+  left: 0rem;
+  height: 30rem;
+  width: 5rem;
+  background: var(--gradient);
+  /* 应用了一个名为 animate1 的动画，持续4秒，采用了缓动函数 */
+  animation: animate1 5s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.home .flex .image::after {
+  /* 伪元素必须有一个内容属性 */
+  content: '';
+  /* 将该伪元素设为绝对定位，相对于其最近的上级元素，这里指的就
+  是 '.home .flex .image'元素 */
+  position: absolute;
+  bottom: 0rem;
+  right: 0rem;
+  height: 30rem;
+  width: 5rem;
+  background: var(--gradient);
+  animation: animate2 5s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+/* 定义动画，控制元素的运动 */
+@keyframes animate1 {
+  0%,
+  100% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animate2 {
+  0%,
+  100% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+}
+
+.home .flex .image img {
+  width: 100%;
+}
+
+.home .flex .content {
+  flex: 1 1 50rem;
+}
+
+.home .flex .content h3 {
+  font-size: 4rem;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.home .flex .content p {
+  color: var(--white);
+  line-height: 1.8;
+  font-size: 1.6rem;
+  padding: 1rem 0;
+}
+
+.services .box-container {
+  display: grid;
+  /* 有时，单元格大小固定，但是容器的大小不确定，可以使用 auto-fill 关键字 */
+  /* 若希望每一行容纳尽可能多的单元格，这时用 auto-fill 关键字表示自动填充 */
+  /* 通常用于 响应式设计 */
+  /* 下面代码表示，每列宽度为35rem，然后自动填充，直到容器不能放置更多的列 */
+  grid-template-columns: repeat(auto-fit, 35rem);
+
+  gap: 1.5rem;
+  /* 设置网格元素 在垂直方向上的对齐方式 为顶部对齐 */
+  align-items: flex-start;
+
+  /* 设置网格元素 在水平方向上的对齐方式 为居中对齐 */
+  justify-content: center;
+}
+
+.services .box-container .box {
+  background-color: var(--bg-color);
+  padding: 2.5rem 2rem;
+  /* 设置元素中文本的 水平对齐方式 为居中对齐 */
+  text-align: center;
+}
+
+/* 一般用 i 元素来代表图标 */
+/* 记住下面这个写法，实现了一种让背景透过文本显示的效果 */
+.services .box-container .box i {
+  font-size: 3.5rem;
+  background: var(--gradient);
+  color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.services .box-container .box h3 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  color: var(--white);
+}
+
+.services .box-container .box p {
+  font-size: 1.4rem;
+  color: var(--light-white);
+  padding: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.about {
+  background: var(--bg-color);
+}
+
+.about .flex {
+  display: flex;
+  /* 上下居中对齐 */
+  align-items: center;
+  /* 如果一条轴排不下，换不换行。取值wrap就是要换行 */
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.about .flex .content {
+  /* 放大比例  缩小比例  初始宽度 */
+  flex: 1 1 40rem;
+}
+
+.about .flex .image {
+  flex: 1 1 40rem;
+}
+
+.about .flex .image img {
+  width: 100%;
+  height: 50rem;
+  /* 设置图像如何适应其容器，contain表示等比例缩放并保持图像完整显示 */
+  object-fit: contain;
+}
+
+.about .flex .content h3 {
+  color: var(--white);
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.about .flex .content p {
+  color: var(--light-white);
+  font-size: 1.6rem;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+
+.reviews .flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.reviews .flex .content {
+  flex: 1 1 40rem;
+}
+
+.reviews .flex .content h3 {
+  color: var(--white);
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.reviews .flex .content p {
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 1.8;
+  padding: 1rem 0;
+}
+
+.reviews .flex .content .controls {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.reviews .flex .content .controls div {
+  color: var(--white);
+  font-size: 2.5rem;
+  line-height: 5rem;
+  height: 5rem;
+  width: 5rem;
+  background: var(--bg-color);
+  text-align: center;
+  cursor: pointer;
+}
+
+.reviews .flex .content .controls div:hover {
+  background: var(--gradient);
+}
+
+.reviews .flex .slides-container {
+  flex: 1 1 40rem;
+}
+
+.reviews .flex .slides-container .slide {
+  background: var(--bg-color);
+  padding: 2.5rem;
+}
+
+.reviews .flex .slides-container .slide .text {
+  color: var(--light-white);
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+.reviews .flex .slides-container .slide .user {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: var(--border);
+}
+
+.reviews .flex .slides-container .slide .user img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reviews .flex .slides-container .slide .user h3 {
+  color: var(--white);
+  font-size: 2rem;
+}
+
+.reviews .flex .slides-container .slide .user .stars {
+  margin-top: 0.5rem;
+}
+
+.reviews .flex .slides-container .slide .user i {
+  color: coral;
+  font-size: 1.5rem;
+}
+
+.reviews .flex .slides-container .slide .user .fa-quote-right {
+  color: transparent;
+  background: var(--gradient);
+  font-size: 4rem;
+  background-clip: text;
+  margin-left: auto;
+}
+
+/* media queries */
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    /* 在页面底部留出高度为7rem的内边距，这样是为了在底部留出导航栏的高度 */
+    padding-bottom: 7rem;
+  }
+
+  .navbar {
+    bottom: 0;
+  }
+
+  .navbar .nav {
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    /* 将导航栏元素的高度设置为其父元素宽度的100% */
+    width: 100%;
+  }
+
+  .navbar .nav a {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar .nav a span {
+    font-size: 1.5rem;
+  }
+
+  .navbar .nav a i {
+    /* 通过display开控制图标的显示还是隐藏 */
+    display: block;
+    /* 通过 font-size 来控制图标的尺寸 */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* 如果是手机窄屏幕，下面的样式生效 */
+  /* 用户点击一级导航栏后，被点击的导航栏的文字变色 */
+  .navbar .nav a:hover {
+    background: none;
+  }
+
+  .navbar .nav a:hover span {
+    color: coral;
+  }
+
+  .home .flex .content h3 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
